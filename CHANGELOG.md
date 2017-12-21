@@ -1,6 +1,39 @@
-# TODO X.X.X planned - not implemented
-- **[Braking change!]** rename 'dragulardrag' event to 'dragulardragstart'
-- new event 'dragulardrag' emited each iteration while dragging
+# 4.4.6 Ghost in the shell
+- isContainer docs augmentation
+- fixed bug in getTargetCtx
+- fixed #161 previous target context used if the last before drop was not accepted target
+
+# 4.4.5 Target
+- fixes #154 - both scopes should be notified about events (source and also target scope)
+- adding main gulp tasks to standard npm tasks, to get better orented quickly
+- renamed CHANGELOG and README to UPPERCASE so they can be more easily to find visually
+
+# 4.4.4 Don't Knock Twice
+- throwing error if trying same container to register twice
+- new example of nested ng-repeats combined with custom directive
+
+# 4.4.3 Spy Kids
+- fixed #148 - model not updated on spill
+
+# 4.4.2 The Model
+- fixed #138 - dynamic model via directive doesn't work properly
+
+# 4.4.1 Dark places
+- fixed #136 - Items can be moved to the end of container even if options.accepts returns false
+
+# 4.4.0 Accepted
+- isContainerAccepts - acceptation function for isContainer containers
+- some docs improvements
+- fixed #132 - not working isContainer with models
+
+# 4.3.4 Home alone
+- merged forgotten changes from master PRs
+
+# 4.3.3 The Gods Must Be Crazy
+- fixed #131 drags mixed with scrolling (caused by chrome update)
+- fixed #129 drag stucks on no-container release
+- fixed #128 canBeAccepted did not work in combination with isContainer
+- added options object as second argument to onInit (requested in #65)
 
 # 4.3.2 War of the Worlds
 - fixed #120 isContainer example not working

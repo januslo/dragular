@@ -1,12 +1,12 @@
 <div class='parent'>
   <h2>Directive - with model</h2>
-  <label for='hy'>Same as custom classes example, but showing use of directive.</label>
+  <label>Same as custom classes example, but showing use of directive.</label>
   <div class='wrapper' ng-controller="DirectiveModel">
     <div class='tableRow'>
       <div class='containerVertical' dragular="dragularOptions">
         <div ng-repeat="item in items1">{{item.content}}</div>
       </div>
-      <div class='containerVertical' dragular='{"containersModel":"items2","classes":{"mirror":"custom-green-mirror"},"nameSpace":"common"}'>
+      <div class='containerVertical' dragular-model="items2" dragular='{"classes":{"mirror":"custom-green-mirror"},"nameSpace":"common"}'>
         <div ng-repeat="item in items2">{{item.content}}</div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <div class='parent'>
   <h2>Copy - with model</h2>
-  <label for='hy'>Copying stuff is great too.</label>
+  <label>Copying stuff is great too.</label>
   <div class='wrapper' ng-controller="CopyModel">
     <div class='tableRow'>
       <div class='containerVertical'>
@@ -13,11 +13,17 @@
     <div class="tableRow">
       <div class='containerVertical'>
         <div>Items1:
-          <br/>{{items1 | json}}</div>
+          <pre>
+            {{ items1 | json }}
+          </pre>
+        </div>
       </div>
       <div class='containerVertical'>
         <div>Items2:
-          <br/>{{items2 | json}}</div>
+          <pre>
+            {{ items2 | json }}
+          </pre>
+        </div>
       </div>
     </div>
   </div>

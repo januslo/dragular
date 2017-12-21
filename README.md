@@ -4,13 +4,16 @@
 
 Browser support includes every sane browser and **IE7+**. <sub>_(Granted you polyfill the functional `Array` methods in ES5)_</sub>
 
+# :warning: ````IMPORTANT NOTICE!!!```` :warning:
+**Maitanance of this library is from now in energy saving mode. I will continue to fix bugs which does not require too heavy rewrites like #133 for example. Because I am working on new drag&drop library called [dragon](https://github.com/luckylooke/dragon) which will be more customisable/maintainable/usable. That is the reason I decided to redirect more of my energy from my other open projects. Thank you for your understanding.**
+
 # [=== Demo ===][2]
 
 # Inspiration
 
-I am working on huge angular project and I am using several drag&drop libraries in it, one for UI, one for lists, etc.. I want to use one full-featured drag&drop library for whole project. As I could not find any suitable, I decided to create one. I have choosen great library [dragula](http://github.com/bevacqua/dragula) by [Nicolas Bevacqua](http://github.com/bevacqua) as my starting point, make it more angular and started to put features in it! If you wish light-weight angular version of dragula, there is [official angular version of dragula](http://github.com/bevacqua/angular-dragula).
+I was working on huge angular project and I was using several drag&drop libraries in it, one for UI, one for lists, etc.. I wanted to use one full-featured drag&drop library for whole project. As I could not find any suitable, I decided to create one. I have choosen great library [dragula](http://github.com/bevacqua/dragula) by [Nicolas Bevacqua](http://github.com/bevacqua) as my starting point, make it more angular and started to put features in it! If you wish light-weight angular version of dragula, there is [official angular version of dragula](http://github.com/bevacqua/angular-dragula).
 
-<b>Actual version 4.3.2 is based on dragula 3.6.3 and tested with angular 1.5.5.</b>
+<b>Actual version 4.4.6 is based on dragula 3.6.3 and tested with angular 1.6.5.</b>
 
 # Differences of dragular (against dragula)
 
@@ -28,11 +31,6 @@ I am working on huge angular project and I am using several drag&drop libraries 
 - support css selectors to define containers
 - added syntax highlighter to example codes
 - etc..
-
-# Todo towards next versions
-
-- improving docs
-- universal example (alowing all combinations of options to be set via form)
 
 # Features
 
@@ -226,29 +224,34 @@ $scope.getFilteredModel = function (filteredModel, items, filterQuery) {
 
 See 'options.containersModel' above for usecase.
 
-### `options.isContainer`
+### `options.isContainer( element )`
 
-Element can be forced to be container by custom logic function.
+Element can be forced to be container by custom logic function. Tested element is passed as argument. It is an element under dragged item called recursivelly so it can be also parent of element under the item or parent of a parent, etc.. 
 
-### `options.isContainerModel`
+### `options.isContainerModel( element )`
 
-If isContainer function is provided, you can provide also respective model.
+If isContainer function is provided, you can provide also respective model. Tested element is passed as argument.
+
+### `options.isContainerAccepts( shared.item, target, shared.source, reference, shared.sourceModel, shared.initialIndex )`
+
+If isContainer function is provided, you can provide also respective acceptation function. Parameters are same as for `options.accepts`.
 
 ### `options.moves`
 
-You can define a `moves` method which will be invoked with `(el, container, handle)` whenever an element is clicked. If this method returns `false`, a drag event won't begin, and the event won't be prevented either. The `handle` element will be the original click target, which comes in handy to test if that element is an expected _"drag handle"_.
+You can define a `moves` callback which will be invoked with `(el, container, handle)` whenever an element is clicked. If this method returns `false`, a drag event won't begin, and the event won't be prevented either. The `handle` element will be the original click target, which comes in handy to test if that element is an expected _"drag handle"_.
 
 ### `options.accepts`
 
-You can set `accepts` to a method with the following signature: `(el, target, source, sibling)`. It'll be called to make sure that an element `el`, that came from container `source`, can be dropped on container `target` before a `sibling` element. The `sibling` can be `null`, which would mean that the element would be placed as the last element in the container. Note that if `options.copy` is set to `true`, `el` will be set to the copy, instead of the originally dragged element. Applied with options provided with initialisation of target container.
+You can set `accepts` to a method with the following signature: `(el, target, source, sibling, sourceModel, initialIndex)`. It'll be called to make sure that an element `el`, that came from container `source`, can be dropped on container `target` before a `sibling` element. The `sibling` can be `null`, which would mean that the element would be placed as the last element in the container. Note that if `options.copy` is set to `true`, `el` will be set to the copy, instead of the originally dragged element. Applied with options provided with initialisation of target container.
 
 Also note that **the position where a drag starts is always going to be a valid place where to drop the element**, even if `accepts` returned `false` for all cases.
 
 ### `options.canBeAccepted`
 
-Same as options.accepts but applied with options provided with initialisation of source container.
+Same as `options.accepts` but applied with options provided with initialisation of source container.
 
 ### `options.copy`
+### `options.copy( el, source )`
 
 If `copy` is set to `true` _(or a method that returns `true`)_, items will be copied rather than moved. This implies the following differences:
 
@@ -274,15 +277,6 @@ If `copy` is set to `true` _(or a method that returns `true`)_ and `copySortSour
 ```js
 copy: true,
 copySortSource: true
-```
-
-#### `options.copySortSource`
-
-If `copy` is set to `true` _(or a method that returns `true`)_ and `dontCopyModel` is `true` as well, dragular won`t make copy of model when coping item.
-
-```js
-copy: true,
-dontCopyModel: true
 ```
 
 ### `options.revertOnSpill`
@@ -321,9 +315,9 @@ Parent element for placing mirror helper element. (default is document.body)
 
 Text selection in inputs wont be considered as drag (default is true).
 
-### `options.eventNames`
+### `options.classes`
 
-Default classe used by dragular can be modified here, providing object with custom names.
+Default classes used by dragular can be modified here, providing object with custom names.
 
 ```js
 defaultClasses = {
@@ -374,7 +368,7 @@ In case your draggable items are customized by other directives/attributes, you 
 
 ### `options.onInit`
 
-You can provide function callback called after dragular initialisation with drake as first argument.
+You can provide function callback called after dragular initialisation with drake as first argument and options object as second argumant.
 
 
 ## Events
